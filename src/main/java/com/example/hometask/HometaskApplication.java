@@ -9,8 +9,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
 @SpringBootApplication
+@Configuration
 public class HometaskApplication {
 
     @Autowired
@@ -20,8 +22,13 @@ public class HometaskApplication {
     @Autowired
     private static SetterInjection setterInjection;
 
+    @Autowired
+    @Qualifier("flames1")
+    private static IFlames flames;
+
     public static void main(String[] args) {
         SpringApplication.run(HometaskApplication.class, args);
+        System.out.println(flames.example());
         System.out.println(fieldInjection.getExample().Hello());
         System.out.println(constructorInjection.getExample().World());
         System.out.println(setterInjection.getExample().Spring());
