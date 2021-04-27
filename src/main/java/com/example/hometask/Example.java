@@ -5,11 +5,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.stereotype.Component;
 
-@Component
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+
 public class Example {
 
-    public Example() {
+    public Example() {}
 
+    @PostConstruct
+    public void created() {
+        System.out.println(">>>>>>>> BEAN SUCCESSFULLY CREATED");
+    }
+
+    @PreDestroy
+    public void destroyed() {
+        System.out.println(">>>>>>>>> BEAN WILL BE DESTROYED NOW");
     }
 
     public String Hello() {

@@ -15,16 +15,18 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class HometaskApplication {
 
-    @Autowired
     private static FieldInjection fieldInjection;
-    @Autowired
+    private static IFlames flames;
     private static ConstructorInjection constructorInjection;
-    @Autowired
     private static SetterInjection setterInjection;
 
-    @Autowired
-    @Qualifier("flames1")
-    private static IFlames flames;
+    public HometaskApplication(FieldInjection fieldInjection, @Qualifier("flames1") IFlames flames,
+                               ConstructorInjection constructorInjection, SetterInjection setterInjection) {
+        HometaskApplication.fieldInjection = fieldInjection;
+        HometaskApplication.flames = flames;
+        HometaskApplication.constructorInjection = constructorInjection;
+        HometaskApplication.setterInjection = setterInjection;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(HometaskApplication.class, args);
